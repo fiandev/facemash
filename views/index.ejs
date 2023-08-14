@@ -1,0 +1,16 @@
+<% include _header %>
+
+<div class="content">
+  <div class="grid">
+      <% categories.forEach(function (category) { %>
+        <a href="/<%= category.slug %>" class="item">
+          <span class="item-label">
+            <%= category.name %>
+          </span>
+        </a>
+      <% }); %>
+    </div>
+  </div>
+</div>
+
+<% include _footer %>

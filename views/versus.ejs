@@ -1,0 +1,47 @@
+<% include _header %>
+
+<h3>Were we let in for our looks? No. Will we be judged on them? Yes.</h3>
+<h2>
+  choose your favorite <%= category.name %>
+</h2>
+<div class="content">
+  <% if(images) { %>
+    <div class="arena">
+      <div>
+        <form onclick="this.submit()" action="/rate?winner=<%= images[0].image_id %>&loser=<%= images[1].image_id %>" method="post">
+            <img class="nomination" src="/images/<%= category.name %>/<%= images[0].filename %>">
+        </form>
+        <p>
+          Won: <%= images[0].wins %>, Lost: <%= images[0].losses %>, Score: <%= images[0].score %>, Expected: <%= expected(images[1].score, images[0].score) %>
+        </p>
+      </div>
+      
+      <span style="font-size: 3em">VS</span>
+      
+      <div>
+        <form onclick="this.submit()" action="/rate?winner=<%= images[1].image_id %>&loser=<%= images[0].image_id %>" method="post">
+          <img class="nomination" src="/images/<%= category.name %>/<%= images[1].filename %>">
+        </form>
+        <p>
+          Won: <%= images[1].wins %>, Lost: <%= images[1].losses %>, Score: <%= images[1].score %>, Expected: <%= expected(images[0].score, images[1].score) %>
+        </p>
+      </div>
+    </div>
+  <% } %>
+
+
+    <br/><br/><br/>
+    <h2>Top Rated</h2>
+    <div class="top-rated">
+        <% topRatings.forEach(function (image) { %>
+          <div class="item">
+            <img src="images/<%= category.name %>/<%= image.filename %>" width="85">
+            <span class="item-label">
+              <%= image.filename.split(".")[0] %>
+            </span>
+          </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include _footer %>
