@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm install",
+  "buildCommand": "npm install sqlite3 && npm run start",
   "builds": [
     {
       "src": "app.js",
